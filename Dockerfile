@@ -8,14 +8,15 @@ ENV INITRD No
 RUN echo "deb http://ftp.fr.debian.org/debian wheezy main" > /etc/apt/sources.list
 RUN echo "deb http://ftp.fr.debian.org/debian wheezy-updates main"  >> /etc/apt/sources.list
 RUN echo "deb http://security.debian.org wheezy/updates main" >> /etc/apt/sources.list
+RUN apt-get update --fix-missing
 
 # HHVM
-RUN apt-key adv --recv-keys --keyserver hkp://keyserver.ubuntu.com:80 0x5a16e7281be7a449
-RUN echo deb http://dl.hhvm.com/debian wheezy main | tee /etc/apt/sources.list.d/hhvm.list
-RUN apt-get update --fix-missing
-RUN apt-get install -y hhvm
-RUN echo 'hhvm.libxml.ext_entity_whitelist = file,http' >> /etc/hhvm/php.ini
-RUN echo 'date.timezone = "Europe/Paris"' >> /etc/hhvm/php.ini
+# RUN apt-key adv --recv-keys --keyserver hkp://keyserver.ubuntu.com:80 0x5a16e7281be7a449
+# RUN echo deb http://dl.hhvm.com/debian wheezy main | tee /etc/apt/sources.list.d/hhvm.list
+# RUN apt-get update --fix-missing
+# RUN apt-get install -y hhvm
+# RUN echo 'hhvm.libxml.ext_entity_whitelist = file,http' >> /etc/hhvm/php.ini
+# RUN echo 'date.timezone = "Europe/Paris"' >> /etc/hhvm/php.ini
 
 # Dependencies
 RUN apt-get install -y apt-utils debconf-utils dialog locales
